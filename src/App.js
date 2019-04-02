@@ -17,6 +17,7 @@ class App extends Component {
     allSchools: undefined
   };
 
+  // Change
   componentDidMount = async () =>{
 
     try{
