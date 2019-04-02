@@ -131,7 +131,7 @@ h1{
 .media-wrapper{
   padding: 3vmin 0;
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center; 
 }
 
