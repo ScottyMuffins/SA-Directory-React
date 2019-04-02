@@ -1,33 +1,238 @@
-.App {
+/* ----------------------- */
+/* App Components */
+/* ----------------------- */
+
+.App{
+  background-image: url("img/DLA_Background_Navy.png");
+  background-repeat: repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.App-footer{
+  align-items: center;
+  background-color: #7d7d7d;
+  color: #e0e0e0;
+  padding: 2vmin;
+  margin-top: 5vmin;
+}
+
+.navbar{
+  min-height: 5vh;
+}
+
+.App-header,
+.App-footer {
+  min-height: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: calc(12px + .5vmin);
+}
+
+.container{
+  min-height: 100vh;
+}
+
+.App-main{
+/*   min-height: 50vh; */
+  padding: 5vh;
+  background:#f9f9f9;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  margin: 5vmin auto;
+  border-radius: 10px;
+}
+
+/* ----------------------- */
+/* Wrappers and Containers */
+/* ----------------------- */
+
+.associate-grid-container{
+/*   max-width:40vw; */
+  min-height: 30vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  row-gap: 2em;
+  column-gap: 5em;
+}
+
+.media{
+  max-width: 240px;
+  min-width: 240px;
+}
+
+.filter-grid-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.footer-grid-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-grid-container p {
+  transform: translateY(60%);
+}
+
+.footer-branding-image{
+  margin: 2vmin;
+}
+
+a:hover{
+  text-decoration: none;
+  color: gray;
+  transition: 0.1s ease-in;
+}
+
+label{ /*Make more specific*/
+  display: block;
+  font-size: calc(10px + .5vmin);
+}
+
+.associate-photo-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.associate-photo-custom-thumbnail{
+  border-radius: 50%;
+  border-radius: 50%;
+  border: 3px solid  #e0e0e0;
+  -webkit-box-shadow: rgba(0,0,0,0.8) 0px 0 10px;
+  -moz-box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+  box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+  display: inline-block;
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-color: black;
+  width: 25vh;
+  height: 25vh;
+}
+
+h1{
+  font-size: calc(20px + 1.5vmin);
+}
+.media{
+  margin:0;
+}
+
+.media-header-wrapper{
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.media-body{
+  width:100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.media-wrapper{
+  padding: 3vmin 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* justify-content: center; */
+  align-items: center; 
 }
 
-.App-link {
-  color: #61dafb;
+#bio-section{
+  max-height: 20vmin;
+  font-size: calc(11px + .5vmin);
+  white-space: pre-wrap;
+  overflow-y: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#bio-header, 
+#bio-section{
+  margin: 3vmin 0;
+}
+
+.dropdown-toggle .nav-link:hover{
+  color: #16253f;
+}
+
+hr{
+  width: 80%;
+}
+
+.welcome-container{
+  text-align: center;
+  padding: 0 10%;
+}
+
+.directory-button-container{
+  text-align: center;
+}
+
+/* ----------------------- */
+/* Buttons */
+/* ----------------------- */
+
+.directory-nav-button{
+  display: inline-block;
+  margin: 3vmin;
+  min-width: 100px;
+}
+
+/* ----------------------- */
+/* Nav */
+/* ----------------------- */
+
+.nav-link{
+  display: inline;
+}
+
+.nav-item{
+  margin: 0 3vmin;
+}
+
+.nav-item a{
+  color: #212529;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #212529;
+}
+
+.brand-header{
+  font-size: calc(10px + 1.5vmin);
+  color: #212529;
+}
+
+.nav-option:hover{
+  color:#7d7d7d;
+}
+
+.dropdown-option:hover{
+  background-color:#7d7d7d;
+}
+
+.dropdown-option:hover{
+  color:white;
+}
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.filter-control-wrapper{
+  /* margin-bottom: 10vmin; */
+  transition: opacity 0.5s;
+  opacity: 1;
+}
+
+#office-modal-btn{
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+#office-select{
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
 }
