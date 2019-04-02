@@ -193,7 +193,7 @@ class Directory extends Component {
                     </Filter>
                 </div>}
                 {this.state.filteredAssociates && <div className='App-main'>
-                    <Associate currentAssociate={this.state.filteredAssociates[this.state.currentAssociateIndex]}></Associate>
+                    <Associate offices={this.props.allOffices} currentAssociate={this.state.filteredAssociates[this.state.currentAssociateIndex]}></Associate>
                     <hr/>
                     <div className='directory-button-container'>
                         <Button color='secondary' onClick={this.prevAssociate} className='directory-nav-button'>Previous</Button>
