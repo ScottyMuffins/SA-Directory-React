@@ -21,7 +21,7 @@ const Associate = (props) => {
                                     </Media>
                                 </div>
                                 <hr/>
-                                <Label className ='assoc-Info'>City:  {props.offices.filter(office => office.officeId === props.currentAssociate.officeID)[0] && props.offices.filter(office => office.officeId === props.currentAssociate.officeID)[0].city}</Label>
+                                <Label className ='assoc-Info'>City:  {props.offices && props.offices.filter(office => office.officeId === props.currentAssociate.officeID)[0] && props.offices.filter(office => office.officeId === props.currentAssociate.officeID)[0].city}</Label>
                                 <Label className ='assoc-Info'>Law School: {props.currentAssociate.lawSchool} {props.currentAssociate.lawSchoolGradYear}</Label>
                                 <Label className ='assoc-Info'>Undergrad: {props.currentAssociate.undergradSchool} - {props.currentAssociate.undergradDegree} {props.currentAssociate.undergradMajor}</Label>
                             </Media>

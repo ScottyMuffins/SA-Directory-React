@@ -66,6 +66,13 @@ class App extends Component {
   }
 
   render() {
+
+    let props ={
+      allSchools: this.state.allSchools,
+      allOffices: this.state.allOffices,
+      allAssociates: this.state.allAssociates
+    }
+
     return (
       <Router>
         <div className="App">
@@ -73,13 +80,12 @@ class App extends Component {
             <AppNav />
           </header>
           <main className="container">
-            <div /* className="App-main" */>
+            <div>
               <Route exact={true} path='/' component={Welcome}/>
-              <Route exact={true} path='/Directory/View-All' component={() => <Directory allOffices={this.state.allOffices} allAssociates={this.state.allAssociates} sortOrder={'ViewAll'} ></Directory>}/>
-              <Route exact={true} path="/Directory/By-Office" component={() => <Directory allOffices={this.state.allOffices} allAssociates={this.state.allAssociates} sortOrder={'ByOffice'} ></Directory>}/>
-              <Route exact={true} path="/Directory/By-School" component={() => <Directory allSchools={this.state.allSchools} allOffices={this.state.allOffices} allAssociates={this.state.allAssociates} sortOrder={'BySchool'} ></Directory>}/> 
-              {/* <Route exact={true} path="/Directory/By-School" render={() => <Directory sortOrder={'BySchool'} ></Directory>}/> */} 
-              {/*    <Route exact={true} path="/Directory/By-Name" component={() => <Directory sortOrder={'ByName'} ></Directory>}/> */}
+              <Route exact={true} path='/Directory/View-All' render={() => <Directory {...props} sortOrder={'ViewAll'} ></Directory>}/>
+              <Route exact={true} path="/Directory/By-Office" render={() => <Directory {...props} sortOrder={'ByOffice'} ></Directory>}/>
+              <Route exact={true} path="/Directory/By-School" render={() => <Directory {...props} sortOrder={'BySchool'}/>}/> 
+              <Route exact={true} path="/Directory/By-Name" render={() => <Directory  {...props} sortOrder={'ByName'} ></Directory>}/>
             </div>
           </main>
           <footer className="App-footer">

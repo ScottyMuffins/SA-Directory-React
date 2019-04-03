@@ -12,7 +12,6 @@ function toggleModalButton(){
 }
 
 function toggleEmployeeSelect(){
-
     if(document.getElementById('office-Select')){
         if(document.getElementById('office-Select').selectedIndex===0){
             document.getElementById('employee-Select').disabled= true;
@@ -26,7 +25,6 @@ function toggleEmployeeSelect(){
             document.getElementById('employee-Select').disabled= false;
         }
     }
-    
 }
 
 class Directory extends Component { 
@@ -36,7 +34,7 @@ class Directory extends Component {
 
         this.state = {
             currentAssociateIndex: 0,
-            filteredAssociates: undefined,
+            filteredAssociates: [],
             currentAssociate: undefined,
             offices: undefined,
             currentOffice: {},
@@ -54,7 +52,11 @@ class Directory extends Component {
     }
 
     componentDidMount = async (e) =>{
-
+        if(this.props.sortOrder==='ViewAll'){
+            this.setState({
+                filteredAssociates: this.props.allAssociates
+            });
+        }
     }
 
     handleChange(e){
@@ -102,7 +104,7 @@ class Directory extends Component {
         switch(filterType){
 
             case 'Office':
-            // Filter by Office and set to state (filteredAssociates). Also - Set current office/office contacts in state   
+            // Filter by Office and set filteredAssociates. Also set current office/office contacts  
                 console.log(this.props.allAssociates);
                 let associatesByOffice = this.props.allAssociates.filter(emp => emp.officeID === filterValue);
                 let selectedOffice = this.props.allOffices.filter(off=>off.officeId === filterValue)
@@ -114,7 +116,7 @@ class Directory extends Component {
             break;
 
             case 'School':
-            // Filter by School and set to state (filteredAssociates)
+            // Filter by School and set filteredAssociates
             let associatesBySchool = this.props.allAssociates.filter(emp => emp.lawSchool === filterValue);
             this.setState({
                 filteredAssociates: associatesBySchool
@@ -180,20 +182,24 @@ class Directory extends Component {
     }
 
     render(){
+
+        let props ={
+            filteredAssociates: this.state.filteredAssociates, 
+            handleChange: this.handleChange, 
+            offices: this.props.allOffices,
+            schools: this.props.allSchools,
+            currentOffice: this.state.currentOffice,
+            sortOrder: this.props.sortOrder,
+            currentAssociate: this.state.filteredAssociates[this.state.currentAssociateIndex]
+        }
+
         return(
             <div>
                 {this.props.sortOrder!=='ViewAll' && this.props.allOffices && <div className='App-main'>
-                    <Filter 
-                        filteredAssociates={this.state.filteredAssociates} 
-                        handleChange={this.handleChange} 
-                        offices={this.props.allOffices}
-                        schools={this.props.allSchools}
-                        currentOffice={this.state.currentOffice} 
-                        sortOrder={this.props.sortOrder} >
-                    </Filter>
+                    <Filter {...props} />
                 </div>}
-                {this.state.filteredAssociates && <div className='App-main'>
-                    <Associate offices={this.props.allOffices} currentAssociate={this.state.filteredAssociates[this.state.currentAssociateIndex]}></Associate>
+                {this.state.filteredAssociates.length > 0 && <div className='App-main'>
+                    <Associate {...props}/>
                     <hr/>
                     <div className='directory-button-container'>
                         <Button color='secondary' onClick={this.prevAssociate} className='directory-nav-button'>Previous</Button>
