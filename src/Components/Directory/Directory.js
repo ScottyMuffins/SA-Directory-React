@@ -4,10 +4,12 @@ import Associate from './Associate/Associate';
 import Filter from './Filter/Filter';
 
 function toggleModalButton(){
-    if(document.getElementById('office-Select').selectedIndex===0){
-        document.getElementById('office-modal-btn').disabled= true;
-    }else{
-        document.getElementById('office-modal-btn').disabled= false;
+    if(document.getElementById('office-Select')){
+        if(document.getElementById('office-Select').selectedIndex===0){
+            document.getElementById('office-modal-btn').disabled= true;
+        }else{
+            document.getElementById('office-modal-btn').disabled= false;
+        }
     }
 }
 
@@ -23,6 +25,10 @@ function toggleEmployeeSelect(){
             document.getElementById('employee-Select').disabled= true;
         }else{
             document.getElementById('employee-Select').disabled= false;
+        }
+    }else{
+        if(document.getElementById('employee-Select')){
+            document.getElementById('employee-Select').disabled= true;
         }
     }
 }
@@ -62,40 +68,51 @@ class Directory extends Component {
     handleChange(e){
         
         if(e){
-            if(e.target.id==='office-Select'){
 
-                if(e.target.selectedIndex === 0){
-                    this.setState({
-                        filteredAssociates: undefined
-                    });
-                }else{
-                    let officeID = e.target.options[e.target.selectedIndex].value;
-                    this.handleFilter('Office', officeID);
-                }
-                toggleModalButton();    // Modal is available upon valid office selection
-                toggleEmployeeSelect(); // Turn employee picker on or off depending on valid office selection
-                this.resetAssociate(); // Have to reset Associate index so it starts at 0 for new office.
+            let target = e.target.id;
+            switch(target){
 
-            }else if(e.target.id==='school-Select'){
-                if(e.target.selectedIndex === 0){
-                    this.setState({
-                        filteredAssociates: undefined
-                    });
-                }else{
-                    let schoolID = e.target.options[e.target.selectedIndex].value;
-                    this.handleFilter('School', schoolID);
-                }
-                toggleEmployeeSelect();
-                this.resetAssociate();
+                case 'office-Select':
+                    if(e.target.selectedIndex === 0){
+                        this.setState({
+                            filteredAssociates: []
+                        });
+                    }else{
+                        let officeID = e.target.options[e.target.selectedIndex].value;
+                        this.handleFilter('Office', officeID);
+                    }
+                    toggleModalButton();    // Modal is available upon valid office selection
+                    toggleEmployeeSelect(); // Turn employee picker on or off depending on valid office selection
+                    this.resetAssociate(); // Have to reset Associate index so it starts at 0 for new office.
+                break;
+
+                case 'school-Select':
+                    if(e.target.selectedIndex === 0){
+                        this.setState({
+                            filteredAssociates: []
+                        });
+                    }else{
+                        let schoolID = e.target.options[e.target.selectedIndex].value;
+                        this.handleFilter('School', schoolID);
+                    }
+                    toggleEmployeeSelect();
+                    this.resetAssociate();
+                break;
+
+                case 'employee-Select':
+                    if(e.target.selectedIndex!==0){
+                        this.setState({
+                            currentAssociateIndex: e.target.selectedIndex-1
+                        });
+                    }
+                break;
+
+                default:
+                    
             }
-            else if(e.target.id==='employee-Select' && e.target.selectedIndex !== 0){
-                this.setState({
-                    currentAssociateIndex: e.target.selectedIndex-1
-                });
-            }
-
         }else{
-           /*  toggleModalButton(); */
+            toggleEmployeeSelect();
+            toggleModalButton();
         }
     }
 

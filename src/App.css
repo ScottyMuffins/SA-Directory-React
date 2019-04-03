@@ -88,7 +88,7 @@ a:hover{
 
 label{ /*Make more specific*/
   display: block;
-  font-size: calc(10px + .5vmin);
+  font-size: calc(10.8px + .5vmin);
 }
 
 .associate-photo-wrapper{
