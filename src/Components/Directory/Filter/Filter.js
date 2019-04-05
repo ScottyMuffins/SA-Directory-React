@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
 import {Label, Button, FormGroup, Input, InputGroup, InputGroupAddon, Row, Col} from 'reactstrap';
 import OfficeModal from '../Modals/Modal';
+import AutoSuggest from './AutoSuggest/AutoSuggest';
 
 const Filter = (props) => { 
 
     useEffect(() => {
-        props.handleChange();
+        props.toggle();
     });
 
     return(
@@ -13,21 +14,14 @@ const Filter = (props) => {
             {props.sortOrder==='ViewAll' &&
                 <FormGroup>
                     <Label><h3>Viewing All Associates</h3></Label>
-                </FormGroup>
-            }
+                </FormGroup>}
             {props.sortOrder==='ByName' &&
                 <FormGroup>
                     <FormGroup>
                         <Label for='associate-Search'><h3>Search by Name</h3></Label>
                     </FormGroup>
-                    <InputGroup>
-                        <Input id='associate-Search'/> {/* Attach Auto-Suggest*/}
-                        <InputGroupAddon addonType="append">
-                            <Button color='primary'>Look Up</Button>
-                        </InputGroupAddon>
-                    </InputGroup> 
-                </FormGroup>
-            }
+                    <AutoSuggest allAssociates={props.allAssociates} handleFilter={props.handleFilter}></AutoSuggest>
+                </FormGroup>}
             {props.sortOrder==='ByOffice' &&
                 <div>
                     <FormGroup>
@@ -58,8 +52,7 @@ const Filter = (props) => {
                             </FormGroup>
                         </Col>
                     </Row>
-                </div>
-            }
+                </div>}
             {props.sortOrder==='BySchool' &&
                 <div>
                     <FormGroup>
@@ -85,8 +78,7 @@ const Filter = (props) => {
                             </FormGroup>
                         </Col>
                     </Row>
-                </div>
-            }
+                </div>}
         </div>
     );
 }

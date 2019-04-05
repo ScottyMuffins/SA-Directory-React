@@ -1,6 +1,6 @@
 import React from 'react';
-import {Media, Label} from 'reactstrap';
-
+import {Media, Label, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText} from 'reactstrap';
+import img from '../../../img/DLA_Piper_Transparent_White.png';
 const Associate = (props) => { 
     return(
         <div>
@@ -9,8 +9,9 @@ const Associate = (props) => {
                      <div className="associate-photo-wrapper"> 
                      {/* https://www.washingtonpost.com/resizer/WyovBu5iqIM5oGBRitw0YFQW_pY=/1484x0/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/4CZ7NLW24II6RC5MX7QB7TODUY.jpg*/}
                      {/* https://d3hp8xnxb3lun4.cloudfront.net/wp-content/uploads/2018/06/EDITfeaturedimage-1200x800.jpg*/}
+                     {/* ${props.currentAssociate.imageUri === null ? img : props.currentAssociate.imageUri} */}
                      {/* https://m.media-amazon.com/images/M/MV5BMTI1MTcwMzc2Ml5BMl5BanBnXkFtZTYwOTUyNDI2._V1_UY317_CR24,0,214,317_AL_.jpg*/}
-                        <div className='associate-photo-custom-thumbnail' style={{backgroundImage:`url(${props.currentAssociate.imageUri})`}}></div>                   
+                        <div className='associate-photo-custom-thumbnail' style={{backgroundImage:`url(https://www.washingtonpost.com/resizer/WyovBu5iqIM5oGBRitw0YFQW_pY=/1484x0/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/4CZ7NLW24II6RC5MX7QB7TODUY.jpg)`}}></div>                   
                     </div>
                     <div className="media-wrapper">
                         <Media>
@@ -20,10 +21,33 @@ const Associate = (props) => {
                                         {props.currentAssociate && props.currentAssociate.firstName.trim() + ' ' + props.currentAssociate.lastName.trim()}
                                     </Media>
                                 </div>
-                                <hr/>
-                                <Label className ='assoc-Info'>City:  {props.offices && props.offices.filter(office => office.officeId === props.currentAssociate.officeID)[0] && props.offices.filter(office => office.officeId === props.currentAssociate.officeID)[0].city}</Label>
+                                {/* <hr/> */}
+
+                                <ListGroup flush>
+                                    <ListGroupItem className='assoc-info'>
+                                        <ListGroupItemHeading className='assoc-info-header'>City</ListGroupItemHeading>
+                                        <ListGroupItemText className='assoc-info-text'>
+                                            {props.offices && props.offices.filter(office => office.officeId === props.currentAssociate.officeID)[0] && props.offices.filter(office => office.officeId === props.currentAssociate.officeID)[0].city}
+                                        </ListGroupItemText>
+                                    </ListGroupItem>
+                                    <ListGroupItem className='assoc-info'>
+                                        <ListGroupItemHeading className='assoc-info-header'>Law School</ListGroupItemHeading>
+                                        <ListGroupItemText className='assoc-info-text'>
+                                            {props.currentAssociate.lawSchool} {props.currentAssociate.lawSchoolGradYear}
+                                        </ListGroupItemText>
+                                    </ListGroupItem>
+                                    <ListGroupItem className='assoc-info'>
+                                        <ListGroupItemHeading className='assoc-info-header'>Undergrad</ListGroupItemHeading>
+                                        <ListGroupItemText className='assoc-info-text'>
+                                            {props.currentAssociate.undergradSchool} - {props.currentAssociate.undergradDegree} {props.currentAssociate.undergradMajor}
+                                        </ListGroupItemText>
+                                    </ListGroupItem>
+                                </ListGroup>
+
+
+                               {/*  <Label className ='assoc-Info'>City:  {props.offices && props.offices.filter(office => office.officeId === props.currentAssociate.officeID)[0] && props.offices.filter(office => office.officeId === props.currentAssociate.officeID)[0].city}</Label>
                                 <Label className ='assoc-Info'>Law School: {props.currentAssociate.lawSchool} {props.currentAssociate.lawSchoolGradYear}</Label>
-                                <Label className ='assoc-Info'>Undergrad: {props.currentAssociate.undergradSchool} - {props.currentAssociate.undergradDegree} {props.currentAssociate.undergradMajor}</Label>
+                                <Label className ='assoc-Info'>Undergrad: {props.currentAssociate.undergradSchool} - {props.currentAssociate.undergradDegree} {props.currentAssociate.undergradMajor}</Label> */}
                             </Media>
                         </Media>
                     </div>
