@@ -95,7 +95,7 @@ class App extends Component {
               <Route exact={true} path="/Directory/By-Name" render={() => <Directory  {...props} sortOrder={'ByName'} ></Directory>}/>
             </div>
           </main>
-          <footer className="App-footer">
+          <footer className="App-footer no-select">
             <div className='footer-grid-container'>
               <img className='footer-branding-image' src={img} alt='none'></img>
               <p>&copy;2019 All Rights Reserved</p>

@@ -142,7 +142,7 @@ class Directory extends Component {
 
             case 'Associate':
                 // Filter by Associate and set to state (filteredAssociates)
-                let associateByName = this.props.allAssociates.filter(emp => emp.employeeID == filterValue);
+                let associateByName = this.props.allAssociates.filter(emp => emp.employeeID === filterValue);
                 this.setState({
                     filteredAssociates: associateByName
                 });
