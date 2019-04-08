@@ -7,7 +7,7 @@ import img from './img/DLA_Piper_Transparent_White.png';
 import './App.css';
 
 const apiBaseURL = 'http://baltfusdr01v/SummerDirectoryAPI/api//Directory/';
-const facebookID = 'COSMOSTEST001'; //FACEBOOK005 COSMOSTEST001
+const facebookID = 'FACEBOOK018'; //FACEBOOK005 COSMOSTEST001 FACEBOOK018
 const bearerToken = 'D03BA43F-121B-438C-9953-3BE9AFB2BB73';
 const fetchRequirements = {
   method: 'GET',
@@ -89,7 +89,7 @@ class App extends Component {
           <main className="container">
             <div>
               <Route exact={true} path='/' component={Welcome}/>
-              <Route exact={true} path='/Directory/View-All' render={() => <Directory {...props} sortOrder={'ViewAll'} ></Directory>}/>
+              <Route exact={true} path='/Directory/View-All' component={() => <Directory {...props} sortOrder={'ViewAll'} ></Directory>}/>
               <Route exact={true} path="/Directory/By-Office" render={() => <Directory {...props} sortOrder={'ByOffice'} ></Directory>}/>
               <Route exact={true} path="/Directory/By-School" render={() => <Directory {...props} sortOrder={'BySchool'}/>}/> 
               <Route exact={true} path="/Directory/By-Name" render={() => <Directory  {...props} sortOrder={'ByName'} ></Directory>}/>

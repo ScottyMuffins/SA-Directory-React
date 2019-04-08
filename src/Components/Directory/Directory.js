@@ -206,7 +206,7 @@ class Directory extends Component {
         let props ={
             allAssociates: this.props.allAssociates,
             filteredAssociates: this.state.filteredAssociates, 
-            currentAssociate: this.state.filteredAssociates[this.state.currentAssociateIndex],
+            currentAssociate: this.state.filteredAssociates === undefined ? '' : this.state.filteredAssociates[this.state.currentAssociateIndex],
             offices: this.props.allOffices,
             currentOffice: this.state.currentOffice,
             schools: this.props.allSchools,
@@ -221,7 +221,7 @@ class Directory extends Component {
                 {this.props.sortOrder!=='ViewAll' && this.props.allOffices && <div className='App-main'>
                     <Filter {...props} />
                 </div>}
-                {this.state.filteredAssociates.length > 0 && <div className='App-main'>
+                {this.state.filteredAssociates && this.state.filteredAssociates.length > 0 && <div className='App-main'>
                     <Associate {...props}/>
                     {this.props.sortOrder!=='ByName' && 
                         <div>

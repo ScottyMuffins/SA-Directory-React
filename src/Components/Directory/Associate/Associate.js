@@ -11,7 +11,7 @@ const Associate = (props) => {
                      {/* https://d3hp8xnxb3lun4.cloudfront.net/wp-content/uploads/2018/06/EDITfeaturedimage-1200x800.jpg*/}
                      {/* ${props.currentAssociate.imageUri === null ? img : props.currentAssociate.imageUri} */}
                      {/* https://m.media-amazon.com/images/M/MV5BMTI1MTcwMzc2Ml5BMl5BanBnXkFtZTYwOTUyNDI2._V1_UY317_CR24,0,214,317_AL_.jpg*/}
-                        <div className='associate-photo-custom-thumbnail' style={{backgroundImage:`url(https://www.washingtonpost.com/resizer/WyovBu5iqIM5oGBRitw0YFQW_pY=/1484x0/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/4CZ7NLW24II6RC5MX7QB7TODUY.jpg)`}}></div>                   
+                        <div className='associate-photo-custom-thumbnail' style={{backgroundImage:`url(${props.currentAssociate.imageUri === null ? img : props.currentAssociate.imageUri})`}}></div>                   
                     </div>
                     <div className="media-wrapper">
                         <Media>
@@ -40,6 +40,12 @@ const Associate = (props) => {
                                         <ListGroupItemHeading className='assoc-info-header'>Undergrad</ListGroupItemHeading>
                                         <ListGroupItemText className='assoc-info-text'>
                                             {props.currentAssociate.undergradSchool} - {props.currentAssociate.undergradDegree} {props.currentAssociate.undergradMajor}
+                                        </ListGroupItemText>
+                                    </ListGroupItem>
+                                    <ListGroupItem className='assoc-info'>
+                                        <ListGroupItemHeading className='assoc-info-header'>Photo URL</ListGroupItemHeading>
+                                        <ListGroupItemText className='assoc-info-text'>
+                                            {props.currentAssociate.imageUri === null ? img : props.currentAssociate.imageUri}
                                         </ListGroupItemText>
                                     </ListGroupItem>
                                 </ListGroup>
