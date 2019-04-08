@@ -79,6 +79,12 @@ a:hover{
 /* Associate */
 /* ----------------------- */
 
+.name-text-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
 .associate-grid-container{
     min-height: 30vh;
     display: grid;
@@ -88,10 +94,10 @@ a:hover{
   }
 
 .assoc-info-header{
-  font-size: calc(11.8px + .5vmin);
+  font-size: calc(11.8px + .5vh);
 }
 .assoc-info-text{
-  font-size: calc(10px + .5vmin);
+  font-size: calc(10px + .5vh);
 }
 
 .assoc-info {
@@ -104,6 +110,7 @@ a:hover{
   display: flex;
   justify-content: center;
   align-items: center; 
+  padding: 15% 0;
 }
 
 .associate-photo-custom-thumbnail{
@@ -118,8 +125,8 @@ a:hover{
   background-position: top center;
   background-repeat: no-repeat;
   background-color: #16253f;
-  width: 25vh;
-  height: 25vh;
+  width: 240px;
+  height: 240px;
 }
 
  /* ----------------------- */
