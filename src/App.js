@@ -7,9 +7,15 @@ import img from './img/DLA_Piper_Transparent_White.png';
 import './App.css';
 
 const apiBaseURL = 'http://baltfusdr01v/SummerDirectoryAPI/api//Directory/';
-const facebookID = 'COSMOSTEST001';
+const facebookID = 'FACEBOOK018'; //FACEBOOK005 COSMOSTEST001 FACEBOOK018
+const bearerToken = 'D03BA43F-121B-438C-9953-3BE9AFB2BB73';
+const fetchRequirements = {
+  method: 'GET',
+  headers: {
+    'Authorization': bearerToken
+  }
+}
 
-// Dev Branch Change
 class App extends Component {
 
   state = {
@@ -22,7 +28,7 @@ class App extends Component {
 
     try{
         const getAssociates = `${apiBaseURL}GetAllBios?facebookid=${facebookID}`;
-        const fetchAssociates = await fetch(getAssociates);
+        const fetchAssociates = await fetch(getAssociates, fetchRequirements);
         const associates = await fetchAssociates.json();
 
         if(associates){
@@ -32,7 +38,7 @@ class App extends Component {
         }
 
         const getOffices = `${apiBaseURL}GetOffices?facebookid=${facebookID}`;
-        const fetchOffices = await fetch(getOffices);
+        const fetchOffices = await fetch(getOffices, fetchRequirements);
         const offices = await fetchOffices.json();
 
         if(offices){
@@ -42,7 +48,7 @@ class App extends Component {
         }
 
         const getLawSchools = `${apiBaseURL}GetLawSchools?facebookid=${facebookID}`;
-        const fetchLawSchools = await fetch(getLawSchools);
+        const fetchLawSchools = await fetch(getLawSchools, fetchRequirements);
         const lawSchools = await fetchLawSchools.json();
 
         if(lawSchools){
@@ -83,7 +89,7 @@ class App extends Component {
           <main className="container">
             <div>
               <Route exact={true} path='/' component={Welcome}/>
-              <Route exact={true} path='/Directory/View-All' render={() => <Directory {...props} sortOrder={'ViewAll'} ></Directory>}/>
+              <Route exact={true} path='/Directory/View-All' component={() => <Directory {...props} sortOrder={'ViewAll'} ></Directory>}/>
               <Route exact={true} path="/Directory/By-Office" render={() => <Directory {...props} sortOrder={'ByOffice'} ></Directory>}/>
               <Route exact={true} path="/Directory/By-School" render={() => <Directory {...props} sortOrder={'BySchool'}/>}/> 
               <Route exact={true} path="/Directory/By-Name" render={() => <Directory  {...props} sortOrder={'ByName'} ></Directory>}/>

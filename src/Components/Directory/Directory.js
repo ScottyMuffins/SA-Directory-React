@@ -4,10 +4,12 @@ import Associate from './Associate/Associate';
 import Filter from './Filter/Filter';
 
 function toggleModalButton(){
-    if(document.getElementById('office-Select').selectedIndex===0){
-        document.getElementById('office-modal-btn').disabled= true;
-    }else{
-        document.getElementById('office-modal-btn').disabled= false;
+    if(document.getElementById('office-Select')){
+        if(document.getElementById('office-Select').selectedIndex===0){
+            document.getElementById('office-modal-btn').disabled= true;
+        }else{
+            document.getElementById('office-modal-btn').disabled= false;
+        }
     }
 }
 
@@ -23,6 +25,10 @@ function toggleEmployeeSelect(){
             document.getElementById('employee-Select').disabled= true;
         }else{
             document.getElementById('employee-Select').disabled= false;
+        }
+    }else{
+        if(document.getElementById('employee-Select')){
+            document.getElementById('employee-Select').disabled= true;
         }
     }
 }
@@ -59,43 +65,56 @@ class Directory extends Component {
         }
     }
 
+    toggle(){
+        toggleEmployeeSelect();
+        toggleModalButton();
+    }
+
     handleChange(e){
         
         if(e){
-            if(e.target.id==='office-Select'){
 
-                if(e.target.selectedIndex === 0){
-                    this.setState({
-                        filteredAssociates: undefined
-                    });
-                }else{
-                    let officeID = e.target.options[e.target.selectedIndex].value;
-                    this.handleFilter('Office', officeID);
-                }
-                toggleModalButton();    // Modal is available upon valid office selection
-                toggleEmployeeSelect(); // Turn employee picker on or off depending on valid office selection
-                this.resetAssociate(); // Have to reset Associate index so it starts at 0 for new office.
+            let target = e.target.id;
+            switch(target){
 
-            }else if(e.target.id==='school-Select'){
-                if(e.target.selectedIndex === 0){
-                    this.setState({
-                        filteredAssociates: undefined
-                    });
-                }else{
-                    let schoolID = e.target.options[e.target.selectedIndex].value;
-                    this.handleFilter('School', schoolID);
-                }
-                toggleEmployeeSelect();
-                this.resetAssociate();
+                case 'office-Select':
+                    if(e.target.selectedIndex === 0){
+                        this.setState({
+                            filteredAssociates: []
+                        });
+                    }else{
+                        let officeID = e.target.options[e.target.selectedIndex].value;
+                        this.handleFilter('Office', officeID);
+                    }
+                    toggleModalButton();    // Modal is available upon valid office selection
+                    toggleEmployeeSelect(); // Turn employee picker on or off depending on valid office selection
+                    this.resetAssociate(); // Have to reset Associate index so it starts at 0 for new office.
+                break;
+
+                case 'school-Select':
+                    if(e.target.selectedIndex === 0){
+                        this.setState({
+                            filteredAssociates: []
+                        });
+                    }else{
+                        let schoolID = e.target.options[e.target.selectedIndex].value;
+                        this.handleFilter('School', schoolID);
+                    }
+                    toggleEmployeeSelect();
+                    this.resetAssociate();
+                break;
+
+                case 'employee-Select':
+                    if(e.target.selectedIndex!==0){
+                        this.setState({
+                            currentAssociateIndex: e.target.selectedIndex-1
+                        });
+                    }
+                break;
+
+                default:
+                    
             }
-            else if(e.target.id==='employee-Select' && e.target.selectedIndex !== 0){
-                this.setState({
-                    currentAssociateIndex: e.target.selectedIndex-1
-                });
-            }
-
-        }else{
-           /*  toggleModalButton(); */
         }
     }
 
@@ -104,11 +123,9 @@ class Directory extends Component {
         switch(filterType){
 
             case 'Office':
-            // Filter by Office and set filteredAssociates. Also set current office/office contacts  
-                console.log(this.props.allAssociates);
+                // Filter by Office and set filteredAssociates. Also set current office/office contacts  
                 let associatesByOffice = this.props.allAssociates.filter(emp => emp.officeID === filterValue);
                 let selectedOffice = this.props.allOffices.filter(off=>off.officeId === filterValue)
-                console.log(associatesByOffice);
                 this.setState({
                     filteredAssociates: associatesByOffice,
                     currentOffice: selectedOffice[0]
@@ -116,16 +133,19 @@ class Directory extends Component {
             break;
 
             case 'School':
-            // Filter by School and set filteredAssociates
-            let associatesBySchool = this.props.allAssociates.filter(emp => emp.lawSchool === filterValue);
-            this.setState({
-                filteredAssociates: associatesBySchool
-            });
-
+                // Filter by School and set filteredAssociates
+                let associatesBySchool = this.props.allAssociates.filter(emp => emp.lawSchool === filterValue);
+                this.setState({
+                    filteredAssociates: associatesBySchool
+                });
             break;
 
             case 'Associate':
-            // Filter by Associate and set to state (filteredAssociates)
+                // Filter by Associate and set to state (filteredAssociates)
+                let associateByName = this.props.allAssociates.filter(emp => emp.employeeID == filterValue);
+                this.setState({
+                    filteredAssociates: associateByName
+                });
             break;
 
             default: // Do nothing
@@ -184,13 +204,16 @@ class Directory extends Component {
     render(){
 
         let props ={
+            allAssociates: this.props.allAssociates,
             filteredAssociates: this.state.filteredAssociates, 
-            handleChange: this.handleChange, 
+            currentAssociate: this.state.filteredAssociates === undefined ? '' : this.state.filteredAssociates[this.state.currentAssociateIndex],
             offices: this.props.allOffices,
-            schools: this.props.allSchools,
             currentOffice: this.state.currentOffice,
+            schools: this.props.allSchools,
             sortOrder: this.props.sortOrder,
-            currentAssociate: this.state.filteredAssociates[this.state.currentAssociateIndex]
+            handleChange: this.handleChange,
+            handleFilter: this.handleFilter,
+            toggle: this.toggle 
         }
 
         return(
@@ -198,13 +221,17 @@ class Directory extends Component {
                 {this.props.sortOrder!=='ViewAll' && this.props.allOffices && <div className='App-main'>
                     <Filter {...props} />
                 </div>}
-                {this.state.filteredAssociates.length > 0 && <div className='App-main'>
+                {this.state.filteredAssociates && this.state.filteredAssociates.length > 0 && <div className='App-main'>
                     <Associate {...props}/>
-                    <hr/>
-                    <div className='directory-button-container'>
-                        <Button color='secondary' onClick={this.prevAssociate} className='directory-nav-button'>Previous</Button>
-                        <Button color='primary' onClick={this.nextAssociate} className='directory-nav-button'>Next</Button>
-                    </div> 
+                    {this.props.sortOrder!=='ByName' && 
+                        <div>
+                            <hr/>
+                            <div className='directory-button-container'>
+                                <Button color='secondary' onClick={this.prevAssociate} className='directory-nav-button' id='previous-nav-button'>Previous</Button>
+                                <Button color='primary' onClick={this.nextAssociate} className='directory-nav-button' id='next-nav-button'>Next</Button>
+                            </div> 
+                        </div>
+                    }
                 </div>}
             </div>
         );

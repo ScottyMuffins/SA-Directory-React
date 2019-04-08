@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, UncontrolledTooltip } from 'reactstrap';
 
 class OfficeModal extends Component {
   constructor(props) {
@@ -45,7 +45,12 @@ class OfficeModal extends Component {
               </ListGroupItem>
               <ListGroupItem>
                 <ListGroupItemHeading>Fusion Page</ListGroupItemHeading>
-                <ListGroupItemText>Contacts go here. </ListGroupItemText>
+                <ListGroupItemText>
+                  Click <a style={{textDecoration: "underline", color:"blue"}} href={this.props.currentOffice.fusionUrl === null ? 'http://Fusion/' : this.props.currentOffice.fusionUrl} id="fusionToolTip" target="_blank"  rel="noopener noreferrer">here</a> to visit the {this.props.currentOffice.officeDescription} Office Fusion Page
+                  <UncontrolledTooltip placement="bottom" target="fusionToolTip">
+                    {`Open ${this.props.currentOffice.fusionUrl === null ? 'Fusion' : this.props.currentOffice.fusionUrl} in a new tab.`}
+                  </UncontrolledTooltip>
+                </ListGroupItemText>
               </ListGroupItem>
             </ListGroup>
           </ModalBody>
