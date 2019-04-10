@@ -6,13 +6,12 @@ import AppNav from './Components/Nav/AppNav';
 import img from './img/DLA_Piper_Transparent_White.png';
 import './App.css';
 
-const apiBaseURL = 'http://baltfusdr01v/SummerDirectoryAPI/api//Directory/';
-const facebookID = 'FACEBOOK018'; //FACEBOOK005 COSMOSTEST001 FACEBOOK018
-const bearerToken = 'D03BA43F-121B-438C-9953-3BE9AFB2BB73';
+const apiBaseURL = process.env.REACT_APP_BASE_URL;
+const facebookID = process.env.REACT_APP_FACEBOOK_ID;
 const fetchRequirements = {
   method: 'GET',
   headers: {
-    'Authorization': bearerToken
+    'Authorization': process.env.REACT_APP_BEARER_TOKEN
   }
 }
 
@@ -24,7 +23,40 @@ class App extends Component {
     allSchools: undefined
   };
 
+  // Updated for concurrency. Awaits all promises at once. 
   componentDidMount = async () =>{
+
+    try{
+        const getAssociates = `${apiBaseURL}GetAllBios?facebookid=${facebookID}`;
+        const getOffices = `${apiBaseURL}GetOffices?facebookid=${facebookID}`;
+        const getLawSchools = `${apiBaseURL}GetLawSchools?facebookid=${facebookID}`;
+
+        let associates, offices, lawSchools;
+
+        await Promise.all([fetch(getAssociates, fetchRequirements), fetch(getOffices, fetchRequirements), fetch(getLawSchools, fetchRequirements)]).then(values =>{
+            associates = values[0].json();
+            offices = values[1].json();
+            lawSchools = values[2].json();
+        });
+
+        await Promise.all([associates, offices, lawSchools]).then(values => {
+            this.setState({
+                allAssociates: values[0],
+                allOffices: values[1],
+                allSchools: values[2]
+            });
+        });
+        
+    }catch(err){
+      this.setState({
+          error: `API Error - Contact Web Technologies - ${err.message}`
+      });
+    }
+
+  }
+
+  // Old way - Not concurrent. This is synchronous. Not terribly slow, but new way is better. 
+  /* componentDidMount = async () =>{
 
     try{
         const getAssociates = `${apiBaseURL}GetAllBios?facebookid=${facebookID}`;
@@ -63,7 +95,7 @@ class App extends Component {
       });
     }
 
-  }
+  } */
 
   resetAssociateFilters(){
     this.setState({
@@ -88,11 +120,11 @@ class App extends Component {
           </header>
           <main className="container">
             <div>
-              <Route exact={true} path='/' component={Welcome}/>
-              <Route exact={true} path='/Directory/View-All' component={() => <Directory {...props} sortOrder={'ViewAll'} ></Directory>}/>
-              <Route exact={true} path="/Directory/By-Office" render={() => <Directory {...props} sortOrder={'ByOffice'} ></Directory>}/>
-              <Route exact={true} path="/Directory/By-School" render={() => <Directory {...props} sortOrder={'BySchool'}/>}/> 
-              <Route exact={true} path="/Directory/By-Name" render={() => <Directory  {...props} sortOrder={'ByName'} ></Directory>}/>
+              <Route exact={true} path='/SummerAssociateDirectory' component={Welcome}/>
+              <Route exact={true} path='/SummerAssociateDirectory/Directory/View-All' component={() => <Directory {...props} sortOrder={'ViewAll'} ></Directory>}/>
+              <Route exact={true} path="/SummerAssociateDirectory/Directory/By-Office" render={() => <Directory {...props} sortOrder={'ByOffice'} ></Directory>}/>
+              <Route exact={true} path="/SummerAssociateDirectory/Directory/By-School" render={() => <Directory {...props} sortOrder={'BySchool'}/>}/> 
+              <Route exact={true} path="/SummerAssociateDirectory/Directory/By-Name" render={() => <Directory  {...props} sortOrder={'ByName'} ></Directory>}/>
             </div>
           </main>
           <footer className="App-footer no-select">

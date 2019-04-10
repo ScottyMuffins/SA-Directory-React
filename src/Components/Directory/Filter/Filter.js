@@ -13,7 +13,7 @@ const Filter = (props) => {
         <div className='filter-control-wrapper'>
             {props.sortOrder==='ViewAll' &&
                 <FormGroup>
-                    <Label><h3>Viewing All Associates</h3></Label>
+                    <Label><h3>View All Associates</h3></Label>
                 </FormGroup>}
             {props.sortOrder==='ByName' &&
                 <FormGroup>

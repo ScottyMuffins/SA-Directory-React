@@ -218,7 +218,7 @@ class Directory extends Component {
 
         return(
             <div>
-                {this.props.sortOrder!=='ViewAll' && this.props.allOffices && <div className='App-main'>
+                {/* this.props.sortOrder!=='ViewAll' &&  */this.props.allOffices && <div className='App-main'>
                     <Filter {...props} />
                 </div>}
                 {this.state.filteredAssociates && this.state.filteredAssociates.length > 0 && <div className='App-main'>

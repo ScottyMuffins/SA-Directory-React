@@ -48,7 +48,7 @@ class OfficeModal extends Component {
                 <ListGroupItemText>
                   Click <a style={{textDecoration: "underline", color:"blue"}} href={this.props.currentOffice.fusionUrl === null ? 'http://Fusion/' : this.props.currentOffice.fusionUrl} id="fusionToolTip" target="_blank"  rel="noopener noreferrer">here</a> to visit the {this.props.currentOffice.officeDescription} Office Fusion Page
                   <UncontrolledTooltip placement="bottom" target="fusionToolTip">
-                    {`Open ${this.props.currentOffice.fusionUrl === null ? 'Fusion' : this.props.currentOffice.fusionUrl} in a new tab.`}
+                    {`Open in a new tab.`}
                   </UncontrolledTooltip>
                 </ListGroupItemText>
               </ListGroupItem>
