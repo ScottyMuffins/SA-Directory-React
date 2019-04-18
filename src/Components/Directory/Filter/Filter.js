@@ -37,7 +37,7 @@ const Filter = (props) => {
                                             <option key={office.officeId} value={office.officeId}>{office.officeDescription}</option>)}
                                     </select>
                                     <InputGroupAddon addonType="append">
-                                        <OfficeModal currentOffice={props.currentOffice} toggleModalButton={props.handleChange}></OfficeModal>
+                                        <OfficeModal currentOffice={props.currentOffice} officeContacts={props.currentOfficeContacts} toggleModalButton={props.handleChange}></OfficeModal>
                                     </InputGroupAddon>
                                 </InputGroup>
                             </FormGroup>

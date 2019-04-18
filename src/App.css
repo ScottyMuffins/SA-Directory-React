@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&amp;subset=cyrillic,latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif');
 
 /* ----------------------- */
 /* App Components */
@@ -68,6 +69,18 @@ a:hover{
 }
 
 /* ----------------------- */
+/* Welcome Header */
+/* ----------------------- */
+
+#welcome-header{
+  font-family: "Noto Serif";
+}
+
+.welcome-container p{
+  font-size: calc(14px + .5vmin);
+}
+
+/* ----------------------- */
 /* Footer */
 /* ----------------------- */
 
@@ -90,23 +103,27 @@ a:hover{
 /* ----------------------- */
 
 .associate-grid-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, auto)) ;
-    row-gap: 2em;
-    column-gap: 5em;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, auto)) ; 
+/*   grid-template-columns: repeat(auto-fit, minmax(240px, auto)) ;  */
+  /* grid-template-columns: repeat(auto-fill, 240px minmax(240px, auto)); */
+  row-gap: 2em;
+  column-gap: 5em;
+}
 
 .associate-photo-wrapper{
   display: flex;
   justify-content: center;
   align-items: center; 
+/*   min-width: 240px;
+  max-width: 240px; */
 }
 
 .associate-media-wrapper{
   padding: 0;
   display: flex;
   justify-content: left;
-  align-items: center; 
+  align-items: center;
 }
 
 .name-text-wrapper{
@@ -132,10 +149,10 @@ a:hover{
 .associate-photo-custom-thumbnail{
   border-radius: 50%;
   border-radius: 50%;
-  border: 3px solid  #e0e0e0;
+  /* border: 3px solid  #e0e0e0;
   -webkit-box-shadow: rgba(0,0,0,0.8) 0px 0 10px;
   -moz-box-shadow: rgba(0,0,0,0.8) 0 0 10px;
-  box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+  box-shadow: rgba(0,0,0,0.8) 0 0 10px; */
   display: inline-block;
   background-size: cover;
   background-position: top center;
@@ -241,6 +258,10 @@ a:hover{
 /* Auto Suggest */
 /* ----------------------- */
 
+.search-by-name{
+  width: 100%;
+}
+
 .react-autosuggest__container {
   position: relative;
 }
@@ -251,7 +272,7 @@ a:hover{
 }
 .react-autosuggest__input {
   height: 38px;
-  width: 40vw;
+
   padding: 10px 20px;
   font-family: -apple-system, BlinkMacSystemFont, "Noto Sans", "Segoe UI", "Roboto", "Oxygen",
   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -277,13 +298,17 @@ a:hover{
   display: none;
 }
 
+.react-autosuggest__input,
+.react-autosuggest__suggestions-container--open{
+  width: 50vmin;
+}
+
 .react-autosuggest__suggestions-container--open {
   font-family: -apple-system, BlinkMacSystemFont, "Noto Sans", "Segoe UI", "Roboto", "Oxygen",
   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;
   display: block;
   position: absolute;
-  width: 40vw;
   border: 1px solid #aaa;
   background-color: #fff;
   font-weight: 300;

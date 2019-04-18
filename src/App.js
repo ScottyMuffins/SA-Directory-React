@@ -20,7 +20,8 @@ class App extends Component {
   state = {
     allAssociates: undefined,
     allOffices: undefined,
-    allSchools: undefined
+    allSchools: undefined,
+    allContacts: undefined
   };
 
   // Updated for concurrency. Awaits all promises at once. 
@@ -30,20 +31,23 @@ class App extends Component {
         const getAssociates = `${apiBaseURL}GetAllBios?facebookid=${facebookID}`;
         const getOffices = `${apiBaseURL}GetOffices?facebookid=${facebookID}`;
         const getLawSchools = `${apiBaseURL}GetLawSchools?facebookid=${facebookID}`;
+        const getOfficeContacts = `${apiBaseURL}GetContacts?facebookid=${facebookID}`;
 
-        let associates, offices, lawSchools;
+        let associates, offices, lawSchools, officeContacts;
 
-        await Promise.all([fetch(getAssociates, fetchRequirements), fetch(getOffices, fetchRequirements), fetch(getLawSchools, fetchRequirements)]).then(values =>{
+        await Promise.all([fetch(getAssociates, fetchRequirements), fetch(getOffices, fetchRequirements), fetch(getLawSchools, fetchRequirements), fetch(getOfficeContacts, fetchRequirements)]).then(values =>{
             associates = values[0].json();
             offices = values[1].json();
             lawSchools = values[2].json();
+            officeContacts = values[3].json();
         });
 
-        await Promise.all([associates, offices, lawSchools]).then(values => {
+        await Promise.all([associates, offices, lawSchools, officeContacts]).then(values => {
             this.setState({
                 allAssociates: values[0],
                 allOffices: values[1],
-                allSchools: values[2]
+                allSchools: values[2],
+                allContacts: values[3]
             });
         });
         
@@ -54,49 +58,7 @@ class App extends Component {
     }
 
   }
-
-  // Old way - Not concurrent. This is synchronous. Not terribly slow, but new way is better. 
-  /* componentDidMount = async () =>{
-
-    try{
-        const getAssociates = `${apiBaseURL}GetAllBios?facebookid=${facebookID}`;
-        const fetchAssociates = await fetch(getAssociates, fetchRequirements);
-        const associates = await fetchAssociates.json();
-
-        if(associates){
-            this.setState({
-                allAssociates: associates
-            });
-        }
-
-        const getOffices = `${apiBaseURL}GetOffices?facebookid=${facebookID}`;
-        const fetchOffices = await fetch(getOffices, fetchRequirements);
-        const offices = await fetchOffices.json();
-
-        if(offices){
-            this.setState({
-                allOffices: offices
-            });
-        }
-
-        const getLawSchools = `${apiBaseURL}GetLawSchools?facebookid=${facebookID}`;
-        const fetchLawSchools = await fetch(getLawSchools, fetchRequirements);
-        const lawSchools = await fetchLawSchools.json();
-
-        if(lawSchools){
-            this.setState({
-                allSchools: lawSchools
-            });
-        }
-
-    }catch(err){
-      this.setState({
-          error: `API Error - Contact Web Technologies - ${err.message}`
-      });
-    }
-
-  } */
-
+  
   resetAssociateFilters(){
     this.setState({
       filteredList: [],
@@ -109,7 +71,8 @@ class App extends Component {
     let props ={
       allSchools: this.state.allSchools,
       allOffices: this.state.allOffices,
-      allAssociates: this.state.allAssociates
+      allAssociates: this.state.allAssociates,
+      allOfficeContacts: this.state.allContacts
     }
 
     return (

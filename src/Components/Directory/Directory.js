@@ -44,7 +44,7 @@ class Directory extends Component {
             currentAssociate: undefined,
             offices: undefined,
             currentOffice: {},
-            currentOfficeContacts: [] ,
+            currentOfficeContacts: [],
             error: undefined
         };
 
@@ -70,6 +70,12 @@ class Directory extends Component {
         toggleModalButton();
     }
 
+    setOfficeContacts(officeId){
+        this.setState({
+            currentOfficeContacts: this.props.allOfficeContacts.filter(con => con.officeID === officeId)
+          });
+    }
+
     handleChange(e){
         
         if(e){
@@ -85,6 +91,7 @@ class Directory extends Component {
                     }else{
                         let officeID = e.target.options[e.target.selectedIndex].value;
                         this.handleFilter('Office', officeID);
+                        this.setOfficeContacts(officeID);
                     }
                     toggleModalButton();    // Modal is available upon valid office selection
                     toggleEmployeeSelect(); // Turn employee picker on or off depending on valid office selection
@@ -208,6 +215,7 @@ class Directory extends Component {
             filteredAssociates: this.state.filteredAssociates, 
             currentAssociate: this.state.filteredAssociates === undefined ? '' : this.state.filteredAssociates[this.state.currentAssociateIndex],
             offices: this.props.allOffices,
+            currentOfficeContacts: this.state.currentOfficeContacts,
             currentOffice: this.state.currentOffice,
             schools: this.props.allSchools,
             sortOrder: this.props.sortOrder,
@@ -218,7 +226,7 @@ class Directory extends Component {
 
         return(
             <div>
-                {/* this.props.sortOrder!=='ViewAll' &&  */this.props.allOffices && <div className='App-main'>
+                {this.props.allOffices && <div className='App-main'>
                     <Filter {...props} />
                 </div>}
                 {this.state.filteredAssociates && this.state.filteredAssociates.length > 0 && <div className='App-main'>

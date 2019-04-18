@@ -1,5 +1,6 @@
 {
   "name": "summer-associate-directory",
+  "homepage": "https://summerdirectoryuidev.azurewebsites.net/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
