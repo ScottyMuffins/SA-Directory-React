@@ -13,7 +13,7 @@ const Filter = (props) => {
         <div className='filter-control-wrapper'>
             {props.sortOrder==='ViewAll' &&
                 <FormGroup>
-                    <Label><h3>Viewing All Associates</h3></Label>
+                    <Label><h3>View All Associates</h3></Label>
                 </FormGroup>}
             {props.sortOrder==='ByName' &&
                 <FormGroup>
@@ -37,7 +37,7 @@ const Filter = (props) => {
                                             <option key={office.officeId} value={office.officeId}>{office.officeDescription}</option>)}
                                     </select>
                                     <InputGroupAddon addonType="append">
-                                        <OfficeModal currentOffice={props.currentOffice} toggleModalButton={props.handleChange}></OfficeModal>
+                                        <OfficeModal currentOffice={props.currentOffice} officeContacts={props.currentOfficeContacts} toggleModalButton={props.handleChange}></OfficeModal>
                                     </InputGroupAddon>
                                 </InputGroup>
                             </FormGroup>

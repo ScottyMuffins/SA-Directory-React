@@ -1,13 +1,22 @@
 import React, {Component} from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, UncontrolledTooltip } from 'reactstrap';
 
+function formatPhoneNumber(phoneNumberString) {
+  var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
+  var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
+  if (match) {
+    return '(' + match[1] + ') ' + match[2] + '-' + match[3]
+  }
+  return null
+}
+
 class OfficeModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modal: false, 
       focusAfterClose: false,
-      unmountOnClose: false
+      unmountOnClose: false,
     };
 
     this.toggle = this.toggle.bind(this);
@@ -24,6 +33,7 @@ class OfficeModal extends Component {
   }
 
   render() {
+
     return (
       <div>
         <Button id='office-modal-btn' color="primary" onClick={this.toggle}>Office Info</Button>
@@ -37,18 +47,24 @@ class OfficeModal extends Component {
               </ListGroupItem>
               <ListGroupItem>
                 <ListGroupItemHeading>Phone</ListGroupItemHeading>
-                <ListGroupItemText><p>{this.props.currentOffice.phone}</p> <p className='text-secondary'>Tie Line: {this.props.currentOffice.tieLine}</p></ListGroupItemText>
+                <ListGroupItemText><p>{formatPhoneNumber(this.props.currentOffice.phone) ? this.props.currentOffice.phone : formatPhoneNumber(this.props.currentOffice.phone)}</p> <p className='text-secondary'>Tie Line: {this.props.currentOffice.tieLine}</p></ListGroupItemText>
               </ListGroupItem>
-              <ListGroupItem>
+              { this.props.currentOffice.fax && <ListGroupItem>
                 <ListGroupItemHeading>Fax</ListGroupItemHeading>
                 <ListGroupItemText>{this.props.currentOffice.fax}</ListGroupItemText>
-              </ListGroupItem>
+              </ListGroupItem>}
+              {this.props.officeContacts[0] &&<ListGroupItem>
+                <ListGroupItemHeading>Recruiting Contacts</ListGroupItemHeading>
+                  <ListGroupItemText>
+                    {this.props.officeContacts[0].recruitingContacts.map((con) => <p>{`${con.firstName} ${con.lastName} - ${formatPhoneNumber(con.phone) ? con.phone : formatPhoneNumber(con.phone)}`}</p>)}
+                  </ListGroupItemText>
+              </ListGroupItem>}
               <ListGroupItem>
                 <ListGroupItemHeading>Fusion Page</ListGroupItemHeading>
                 <ListGroupItemText>
                   Click <a style={{textDecoration: "underline", color:"blue"}} href={this.props.currentOffice.fusionUrl === null ? 'http://Fusion/' : this.props.currentOffice.fusionUrl} id="fusionToolTip" target="_blank"  rel="noopener noreferrer">here</a> to visit the {this.props.currentOffice.officeDescription} Office Fusion Page
                   <UncontrolledTooltip placement="bottom" target="fusionToolTip">
-                    {`Open ${this.props.currentOffice.fusionUrl === null ? 'Fusion' : this.props.currentOffice.fusionUrl} in a new tab.`}
+                    {`Open in a new tab.`}
                   </UncontrolledTooltip>
                 </ListGroupItemText>
               </ListGroupItem>

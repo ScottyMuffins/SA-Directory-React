@@ -30,23 +30,24 @@ class AppNav extends Component {
     }
 
     render(){
+
         return(
-            <Navbar color="light" light expand="md">
-                <NavbarBrand className='brand-text no-select'tag={Link} to='/'>Summer Associates Directory</NavbarBrand>
+            <Navbar style={{backgroundColor: '#0073cf'}} dark expand="md">
+                <NavbarBrand className='brand-text no-select'tag={Link} to='/'>Summer Associate Directory</NavbarBrand>
                 <NavbarToggler onClick={this.toggleNav} />
                 <Collapse isOpen={this.state.navOpen} navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <Link className='nav-option  no-select' to="/">Home</Link>
+                            <Link style={{color: 'white'}} className='no-select' to="/SummerAssociateDirectory">Home</Link>
                         </NavItem>
                         <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle nav caret className='nav-option  no-select'>Directory</DropdownToggle>
+                            <DropdownToggle nav caret style={{color: 'white'}} className='no-select'>Directory</DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem tag={Link} to='/Directory/View-All' className='dropdown-option'>View All </DropdownItem>
+                                <DropdownItem id='drop-link' tag={Link} to='/SummerAssociateDirectory/Directory/View-All' className='dropdown-option'>View All </DropdownItem>
                                 <DropdownItem divider />
-                                <DropdownItem tag={Link} to='/Directory/By-Name' className='dropdown-option'>By Name</DropdownItem>
-                                <DropdownItem tag={Link} to='/Directory/By-Office' className='dropdown-option'>By Office</DropdownItem>
-                                <DropdownItem tag={Link} to='/Directory/By-School' className='dropdown-option'>By School</DropdownItem>
+                                <DropdownItem id='drop-link' tag={Link} to='/SummerAssociateDirectory/Directory/By-Name' className='dropdown-option'>By Name</DropdownItem>
+                                <DropdownItem id='drop-link' tag={Link} to='/SummerAssociateDirectory/Directory/By-Office' className='dropdown-option'>By Office</DropdownItem>
+                                <DropdownItem id='drop-link' tag={Link} to='/SummerAssociateDirectory/Directory/By-School' className='dropdown-option'>By School</DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </Nav>
