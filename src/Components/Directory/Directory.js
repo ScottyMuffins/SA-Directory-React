@@ -238,8 +238,7 @@ class Directory extends Component {
                                 <Button color='secondary' onClick={this.prevAssociate} className='directory-nav-button' id='previous-nav-button'>Previous</Button>
                                 <Button color='primary' onClick={this.nextAssociate} className='directory-nav-button' id='next-nav-button'>Next</Button>
                             </div> 
-                        </div>
-                    }
+                        </div>}
                 </div>}
             </div>
         );

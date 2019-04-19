@@ -92,7 +92,7 @@ class App extends Component {
           </main>
           <footer className="App-footer no-select">
             <div className='footer-grid-container'>
-              <img className='footer-branding-image' src={img} alt='none'></img>
+             {/*  <img className='footer-branding-image' src={img} alt='none'></img> */}
               <p>&copy;2019 All Rights Reserved</p>
             </div>
           </footer>

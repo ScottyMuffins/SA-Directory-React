@@ -15,7 +15,7 @@ const Welcome = () => {
                 <br/>
                 <p>Please take the time to review this directory and make the effort to meet as many members of our summer class as you can. We want each of them to feel welcome, and we want to offer each the opportunities to learn as much as possible about the people and practices that make DLA Piper a special place to practice law.</p>
                 <br/><br/>
-                <h5><b>Christina Martini</b></h5>
+                <h5><b>Lorem Ipsum</b></h5>
                 <p><i>National Hiring Partner - Associate Recruiting</i></p>
                 <br/>
             </div>
