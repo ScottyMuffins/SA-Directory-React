@@ -33,7 +33,7 @@ class AppNav extends Component {
 
         return(
             <Navbar style={{backgroundColor: '#0073cf'}} dark expand="md">
-                <NavbarBrand className='brand-text no-select'tag={Link} to='/'>Summer Associate Directory</NavbarBrand>
+                <NavbarBrand className='brand-text no-select'tag={Link} to='/SummerAssociateDirectory'>Summer Associate Directory</NavbarBrand>
                 <NavbarToggler onClick={this.toggleNav} />
                 <Collapse isOpen={this.state.navOpen} navbar>
                     <Nav className="ml-auto" navbar>
