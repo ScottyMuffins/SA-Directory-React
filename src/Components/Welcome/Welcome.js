@@ -4,7 +4,7 @@ const Welcome = () => {
 
     return(
         <div className='App-main'>
-            <div className='welcome-container'>
+            <div className='welcome-container no-select'>
                 <br/>
                 <h2 id='welcome-header'>Welcome Summer Associates</h2>
                 <hr/>

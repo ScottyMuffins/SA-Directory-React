@@ -226,7 +226,7 @@ class Directory extends Component {
 
         return(
             <div>
-                {this.props.allOffices && <div className='App-main'>
+                {this.props.allOffices && <div className='App-filter'>
                     <Filter {...props} />
                 </div>}
                 {this.state.filteredAssociates && this.state.filteredAssociates.length > 0 && <div className='App-main'>
