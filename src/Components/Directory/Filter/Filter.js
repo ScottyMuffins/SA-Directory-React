@@ -33,8 +33,7 @@ const Filter = (props) => {
                                 <InputGroup>
                                     <select id='office-Select' onChange={props.handleChange} className="form-control">
                                         <option value="0">- Select Office -</option>
-                                        {props.offices.map((office) => 
-                                            <option key={office.officeId} value={office.officeId}>{office.officeDescription}</option>)}
+                                        {props.offices.map(office => <option key={office.officeId} value={office.officeId}>{office.officeDescription}</option>)}
                                     </select>
                                     <InputGroupAddon addonType="append">
                                         <OfficeModal currentOffice={props.currentOffice} officeContacts={props.currentOfficeContacts} toggleModalButton={props.handleChange}></OfficeModal>
@@ -46,8 +45,7 @@ const Filter = (props) => {
                             <FormGroup>
                                 <select id='employee-Select' className="form-control" onChange={props.handleChange}>
                                         <option value="0">- Select Employee -</option>
-                                        {props.filteredAssociates && props.filteredAssociates.map((emp) => 
-                                            <option key={emp.employeeID} value={emp.employeeID}>{emp.firstName + ' ' + emp.lastName}</option>)}
+                                        {props.filteredAssociates && props.filteredAssociates.map(emp => <option key={emp.employeeID} value={emp.employeeID}>{emp.firstName + ' ' + emp.lastName}</option>)}
                                 </select>
                             </FormGroup>
                         </Col>
@@ -63,8 +61,7 @@ const Filter = (props) => {
                             <FormGroup>
                                 <select id='school-Select' className="form-control" onChange={props.handleChange}>
                                         <option value="0">- Select School -</option>
-                                        {props.schools && props.schools.map((school) => 
-                                            <option key={school.lawSchoolDescription} value={school.lawSchoolDescription}>{school.lawSchoolDescription}</option>)}
+                                        {props.schools && props.schools.map(school => <option key={school.lawSchoolDescription} value={school.lawSchoolDescription}>{school.lawSchoolDescription}</option>)}
                                 </select>
                             </FormGroup>
                         </Col>
@@ -72,8 +69,7 @@ const Filter = (props) => {
                             <FormGroup>
                                 <select id='employee-Select' className="form-control" onChange={props.handleChange}>
                                         <option value="0">- Select Employee -</option>
-                                        {props.filteredAssociates && props.filteredAssociates.map((emp) => 
-                                            <option key={emp.employeeID} value={emp.employeeID}>{emp.firstName + ' ' + emp.lastName}</option>)}
+                                        {props.filteredAssociates && props.filteredAssociates.map(emp => <option key={emp.employeeID} value={emp.employeeID}>{emp.firstName + ' ' + emp.lastName}</option>)}
                                 </select>
                             </FormGroup>
                         </Col>
