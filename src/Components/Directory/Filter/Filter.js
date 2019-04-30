@@ -27,8 +27,8 @@ const Filter = (props) => {
                     <FormGroup>
                         <Label for='office-Select'><h3>Search by Office</h3></Label>
                     </FormGroup>
-                    <Row className='filter-grid-container'>
-                        <Col>
+                    <Row /* className='filter-grid-container' */>
+                        <Col lg="6">
                             <FormGroup>
                                 <InputGroup>
                                     <select id='office-Select' onChange={props.handleChange} className="form-control">
@@ -41,7 +41,7 @@ const Filter = (props) => {
                                 </InputGroup>
                             </FormGroup>
                         </Col>
-                        <Col>
+                        <Col lg="6">
                             <FormGroup>
                                 <select id='employee-Select' className="form-control" onChange={props.handleChange}>
                                         <option value="0">- Select Employee -</option>
@@ -56,8 +56,8 @@ const Filter = (props) => {
                     <FormGroup>
                         <Label for='school-Select'><h3>Search by School</h3></Label>
                     </FormGroup>
-                    <Row className='filter-grid-container'>
-                        <Col>
+                    <Row /* className='filter-grid-container' */>
+                        <Col lg="6">
                             <FormGroup>
                                 <select id='school-Select' className="form-control" onChange={props.handleChange}>
                                         <option value="0">- Select School -</option>
@@ -65,7 +65,7 @@ const Filter = (props) => {
                                 </select>
                             </FormGroup>
                         </Col>
-                        <Col>
+                        <Col lg="6">
                             <FormGroup>
                                 <select id='employee-Select' className="form-control" onChange={props.handleChange}>
                                         <option value="0">- Select Employee -</option>
