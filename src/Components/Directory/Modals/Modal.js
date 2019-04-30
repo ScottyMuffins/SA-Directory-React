@@ -5,9 +5,9 @@ function formatPhoneNumber(phoneNumberString) {
   var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
   var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
   if (match) {
-    return '(' + match[1] + ') ' + match[2] + '-' + match[3]
+    return '(' + match[1] + ') ' + match[2] + '-' + match[3];
   }
-  return null
+  return null;
 }
 
 class OfficeModal extends Component {
@@ -43,13 +43,13 @@ class OfficeModal extends Component {
             <ListGroup flush>
               <ListGroupItem>
                 <ListGroupItemHeading>Address</ListGroupItemHeading>
-                <ListGroupItemText>{this.props.currentOffice.address} {this.props.currentOffice.city}, {this.props.currentOffice.stateCode} {this.props.currentOffice.zip}</ListGroupItemText>
+                <ListGroupItemText>{this.props.currentOffice.address} <br/> {this.props.currentOffice.city}, {this.props.currentOffice.stateCode} {this.props.currentOffice.zip}</ListGroupItemText>
               </ListGroupItem>
               <ListGroupItem>
                 <ListGroupItemHeading>Phone</ListGroupItemHeading>
                 <ListGroupItemText><p>{formatPhoneNumber(this.props.currentOffice.phone) ? this.props.currentOffice.phone : formatPhoneNumber(this.props.currentOffice.phone)}</p> <p className='text-secondary'>Tie Line: {this.props.currentOffice.tieLine}</p></ListGroupItemText>
               </ListGroupItem>
-              { this.props.currentOffice.fax && <ListGroupItem>
+              { this.props.currentOffice.fax && this.props.currentOffice.fax.trim()!='' && <ListGroupItem>
                 <ListGroupItemHeading>Fax</ListGroupItemHeading>
                 <ListGroupItemText>{this.props.currentOffice.fax}</ListGroupItemText>
               </ListGroupItem>}
@@ -59,7 +59,7 @@ class OfficeModal extends Component {
                     {this.props.officeContacts[0].recruitingContacts.map((con) => <p>{`${con.firstName} ${con.lastName} - ${formatPhoneNumber(con.phone) ? con.phone : formatPhoneNumber(con.phone)}`}</p>)}
                   </ListGroupItemText>
               </ListGroupItem>}
-              <ListGroupItem>
+              {this.props.currentOffice.fusionUrl && <ListGroupItem>
                 <ListGroupItemHeading>Fusion Page</ListGroupItemHeading>
                 <ListGroupItemText>
                   Click <a style={{textDecoration: "underline", color:"blue"}} href={this.props.currentOffice.fusionUrl === null ? 'http://Fusion/' : this.props.currentOffice.fusionUrl} id="fusionToolTip" target="_blank"  rel="noopener noreferrer">here</a> to visit the {this.props.currentOffice.officeDescription} Office Fusion Page
@@ -67,7 +67,7 @@ class OfficeModal extends Component {
                     {`Open in a new tab.`}
                   </UncontrolledTooltip>
                 </ListGroupItemText>
-              </ListGroupItem>
+              </ListGroupItem>}
             </ListGroup>
           </ModalBody>
           <ModalFooter>

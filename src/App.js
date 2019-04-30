@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Directory from './Components/Directory/Directory';
 import Welcome from './Components/Welcome/Welcome';
 import AppNav from './Components/Nav/AppNav';
-import img from './img/DLA_Piper_Transparent_White.png';
+/* import img from './img/DLA_Piper_Transparent_White.png'; */
 import './App.css';
 
 const apiBaseURL = process.env.REACT_APP_BASE_URL;
@@ -28,28 +28,28 @@ class App extends Component {
   componentDidMount = async () =>{
 
     try{
-        const getAssociates = `${apiBaseURL}GetAllBios?facebookid=${facebookID}`;
-        const getOffices = `${apiBaseURL}GetOffices?facebookid=${facebookID}`;
-        const getLawSchools = `${apiBaseURL}GetLawSchools?facebookid=${facebookID}`;
-        const getOfficeContacts = `${apiBaseURL}GetContacts?facebookid=${facebookID}`;
+      const getAssociates = `${apiBaseURL}GetAllBios?facebookid=${facebookID}`;
+      const getOffices = `${apiBaseURL}GetOffices?facebookid=${facebookID}`;
+      const getLawSchools = `${apiBaseURL}GetLawSchools?facebookid=${facebookID}`;
+      const getOfficeContacts = `${apiBaseURL}GetContacts?facebookid=${facebookID}`;
 
-        let associates, offices, lawSchools, officeContacts;
+      let associates, offices, lawSchools, officeContacts;
 
-        await Promise.all([fetch(getAssociates, fetchRequirements), fetch(getOffices, fetchRequirements), fetch(getLawSchools, fetchRequirements), fetch(getOfficeContacts, fetchRequirements)]).then(values =>{
-            associates = values[0].json();
-            offices = values[1].json();
-            lawSchools = values[2].json();
-            officeContacts = values[3].json();
-        });
+      await Promise.all([fetch(getAssociates, fetchRequirements), fetch(getOffices, fetchRequirements), fetch(getLawSchools, fetchRequirements), fetch(getOfficeContacts, fetchRequirements)]).then(values =>{
+          associates = values[0].json();
+          offices = values[1].json();
+          lawSchools = values[2].json();
+          officeContacts = values[3].json();
+      });
 
-        await Promise.all([associates, offices, lawSchools, officeContacts]).then(values => {
-            this.setState({
-                allAssociates: values[0],
-                allOffices: values[1],
-                allSchools: values[2],
-                allContacts: values[3]
-            });
-        });
+      await Promise.all([associates, offices, lawSchools, officeContacts]).then(values => {
+          this.setState({
+              allAssociates: values[0],
+              allOffices: values[1],
+              allSchools: values[2],
+              allContacts: values[3]
+          });
+      });
         
     }catch(err){
       this.setState({
@@ -72,7 +72,8 @@ class App extends Component {
       allSchools: this.state.allSchools,
       allOffices: this.state.allOffices,
       allAssociates: this.state.allAssociates,
-      allOfficeContacts: this.state.allContacts
+      allOfficeContacts: this.state.allContacts,
+      error: this.state.error,
     }
 
     return (

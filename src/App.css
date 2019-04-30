@@ -9,7 +9,7 @@
   font-family: -apple-system, BlinkMacSystemFont, "Noto Sans", "Segoe UI", "Roboto", "Oxygen",
   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;
-  background-image: url("img/DLA_Background_Navy.png");
+  background-image: url("img/DLA_Background_Navy.jpg");
   background-repeat: repeat;
   background-position: center;
   background-attachment: fixed;
@@ -32,26 +32,38 @@
   font-size: calc(12px + .5vmin);
 }
 
-h1{
-  font-size: calc(20px + 1.5vmin);
+hr{
+  clear:both;
+  display:block;               
+  height: 1px;
+  width:40%;
 }
 
-hr{
-  width: 40%;
+h1{
+  font-size: calc(20px + 1.5vmin);
 }
 
 a:hover{
   text-decoration: none;
   color: gray;
-  transition: 0.1s ease-in;
+  transition: 0.2s ease-in;
 }
 
 .container{
   min-height: 100vh;
 }
 
+.App-filter{
+  padding: 2vmin 3vmin;
+  background:#f9f9f9;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  margin: 2vmin auto;
+  border-radius: 10px;
+}
+
 .App-main{
   padding: 3vmin;
+  padding-top: 5vmin;
   background:#f9f9f9;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   margin: 2vmin auto;
@@ -102,29 +114,20 @@ a:hover{
 /* Associate */
 /* ----------------------- */
 
-.associate-grid-container{
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, auto)) ; 
-/*   grid-template-columns: repeat(auto-fit, minmax(240px, auto)) ;  */
-  /* grid-template-columns: repeat(auto-fill, 240px minmax(240px, auto)); */
-  row-gap: 2em;
-  column-gap: 5em;
-}
-
 .associate-photo-wrapper{
   display: flex;
   justify-content: center;
   align-items: center; 
-/*   min-width: 240px;
-  max-width: 240px; */
+  /* margin-top: 3vmin; */
 }
 
 .associate-media-wrapper{
-  padding: 0;
-  display: flex;
-  justify-content: left;
-  align-items: center;
+  padding-top: 5vmin;
 }
+ 
+ .associate-top-container{
+   min-height: 30vmin;
+ }
 
 .name-text-wrapper{
   display: flex;
@@ -149,17 +152,13 @@ a:hover{
 .associate-photo-custom-thumbnail{
   border-radius: 50%;
   border-radius: 50%;
-  /* border: 3px solid  #e0e0e0;
-  -webkit-box-shadow: rgba(0,0,0,0.8) 0px 0 10px;
-  -moz-box-shadow: rgba(0,0,0,0.8) 0 0 10px;
-  box-shadow: rgba(0,0,0,0.8) 0 0 10px; */
   display: inline-block;
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
   background-color: #16253f;
-  width: 180px;
-  height: 180px;
+  width: 225px;
+  height: 225px;
 }
 
  /* ----------------------- */
@@ -205,6 +204,10 @@ a:hover{
   text-align: center;
 }
 
+.welcome-button{
+  /* float: right; */
+}
+
 .directory-nav-button{
   display: inline-block;
   margin-top: 0;
@@ -214,8 +217,10 @@ a:hover{
   min-width: 100px;
 }
 .btn-primary{
-  max-height: 38px;
+  /* max-height: 38px; */
 }
+
+
 
 /* ----------------------- */
 /* Nav */
@@ -223,7 +228,7 @@ a:hover{
 
 .navbar{
   min-height: 5vh;
-  margin-bottom: 2vmin;
+  /* margin-bottom: 2vmin; */
 }
 
 .nav-link{
@@ -252,6 +257,10 @@ a:hover{
 #office-select{
   border-bottom-right-radius: 0px;
   border-top-right-radius: 0px;
+}
+
+.office-phone{
+  margin-right: 1vmin;
 }
 
  /* ----------------------- */
@@ -315,6 +324,7 @@ a:hover{
   font-size: 16px;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
+  z-index: 1;
 }
 
 .react-autosuggest__suggestions-list {
