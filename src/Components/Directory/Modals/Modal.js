@@ -36,12 +36,12 @@ class OfficeModal extends Component {
 
     return (
       <div>
-        <Button id='office-modal-btn' color="primary" onClick={this.toggle}>Office Info</Button>
+        <Button id='office-modal-btn' color="primary" onClick={this.toggle}>Recruiting Contacts</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>{this.props.currentOffice.officeDescription} Office</ModalHeader>
+          <ModalHeader toggle={this.toggle}>{this.props.currentOffice.officeDescription}</ModalHeader>
           <ModalBody>
             <ListGroup flush>
-              <ListGroupItem>
+              {/* <ListGroupItem>
                 <ListGroupItemHeading>Address</ListGroupItemHeading>
                 <ListGroupItemText>{this.props.currentOffice.address} <br/> {this.props.currentOffice.city}, {this.props.currentOffice.stateCode} {this.props.currentOffice.zip}</ListGroupItemText>
               </ListGroupItem>
@@ -49,15 +49,15 @@ class OfficeModal extends Component {
                 <ListGroupItemHeading>Phone</ListGroupItemHeading>
                 <ListGroupItemText><p>{formatPhoneNumber(this.props.currentOffice.phone) ? this.props.currentOffice.phone : formatPhoneNumber(this.props.currentOffice.phone)}</p> <p className='text-secondary'>Tie Line: {this.props.currentOffice.tieLine}</p></ListGroupItemText>
               </ListGroupItem>
-              { this.props.currentOffice.fax && this.props.currentOffice.fax.trim()!='' && <ListGroupItem>
+              { this.props.currentOffice.fax && this.props.currentOffice.fax.trim()!=='' && <ListGroupItem>
                 <ListGroupItemHeading>Fax</ListGroupItemHeading>
                 <ListGroupItemText>{this.props.currentOffice.fax}</ListGroupItemText>
-              </ListGroupItem>}
+              </ListGroupItem>} */}
               {this.props.officeContacts[0] &&<ListGroupItem>
                 <ListGroupItemHeading>Recruiting Contacts</ListGroupItemHeading>
-                  <ListGroupItemText>
-                    {this.props.officeContacts[0].recruitingContacts.map((con) => <p>{`${con.firstName} ${con.lastName} - ${formatPhoneNumber(con.phone) ? con.phone : formatPhoneNumber(con.phone)}`}</p>)}
-                  </ListGroupItemText>
+                <ListGroupItemText>
+                  {this.props.officeContacts[0].recruitingContacts.map((con) => <p>{`${con.firstName} ${con.lastName} - ${formatPhoneNumber(con.phone) ? con.phone : formatPhoneNumber(con.phone)}`}</p>)}
+                </ListGroupItemText>
               </ListGroupItem>}
               {this.props.currentOffice.fusionUrl && <ListGroupItem>
                 <ListGroupItemHeading>Fusion Page</ListGroupItemHeading>
