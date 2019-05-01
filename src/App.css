@@ -137,6 +137,7 @@ a:hover{
 
 .assoc-info-header{
   font-size: calc(11.8px + .5vh);
+  display: block;
 }
 
 .assoc-info-text{
@@ -204,10 +205,6 @@ a:hover{
   text-align: center;
 }
 
-.welcome-button{
-  /* float: right; */
-}
-
 .directory-nav-button{
   display: inline-block;
   margin-top: 0;
@@ -216,11 +213,6 @@ a:hover{
   margin-right: 3vmin;
   min-width: 100px;
 }
-.btn-primary{
-  /* max-height: 38px; */
-}
-
-
 
 /* ----------------------- */
 /* Nav */
@@ -279,9 +271,9 @@ a:hover{
   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;
 }
+
 .react-autosuggest__input {
   height: 38px;
-
   padding: 10px 20px;
   font-family: -apple-system, BlinkMacSystemFont, "Noto Sans", "Segoe UI", "Roboto", "Oxygen",
   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
