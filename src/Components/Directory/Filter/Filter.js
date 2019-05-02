@@ -27,7 +27,7 @@ const Filter = (props) => {
                     <FormGroup>
                         <Label for='office-Select'><h3>Search by Office</h3></Label>
                     </FormGroup>
-                    <Row /* className='filter-grid-container' */>
+                    <Row>
                         <Col lg="6">
                             <FormGroup>
                                 <InputGroup>
@@ -56,7 +56,7 @@ const Filter = (props) => {
                     <FormGroup>
                         <Label for='school-Select'><h3>Search by School</h3></Label>
                     </FormGroup>
-                    <Row /* className='filter-grid-container' */>
+                    <Row>
                         <Col lg="6">
                             <FormGroup>
                                 <select id='school-Select' className="form-control" onChange={props.handleChange}>

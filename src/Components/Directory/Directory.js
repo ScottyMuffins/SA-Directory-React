@@ -226,7 +226,10 @@ class Directory extends Component {
 
         return(
             <div>
-                {this.props.allOffices && <div className='App-filter'>
+                {this.props.allOffices && this.props.sortOrder!=='ViewAll' && <div className='App-filter' >
+                    <Filter {...props} />
+                </div>}
+                {this.props.allOffices && this.props.sortOrder==='ViewAll' && <div className='view-all-app-filter' >
                     <Filter {...props} />
                 </div>}
                 {this.state.filteredAssociates && this.state.filteredAssociates.length > 0 && <div className='App-main'>
