@@ -1,6 +1,6 @@
 {
   "name": "summer-associate-directory",
-  "homepage": "http://baltfusdr01v.piper.root.local/SummerAssociateDirectory/",
+  "homepage": "#{homepage}#",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
