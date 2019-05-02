@@ -32,7 +32,7 @@ class AppNav extends Component {
     render(){
 
         return(
-            <Navbar style={{backgroundColor: '#0073cf'}} dark expand="lg">
+            <Navbar style={{backgroundColor: '#0073CF'}} dark expand="lg">
                 <NavbarBrand className='brand-text no-select'tag={Link} to='/SummerAssociateDirectory'>Summer Associate Directory</NavbarBrand>
                 <NavbarToggler onClick={this.toggleNav} />
                 <Collapse isOpen={this.state.navOpen} navbar>
