@@ -7,7 +7,7 @@ const Welcome = () => {
     return(
         <div className='App-main'>
             <div className='welcome-container no-select'>
-                <br/>
+            <br/>
                 <h2 id='welcome-header'>Welcome 2019 Summer Associates</h2>
                 <hr/>
                 <br/>
