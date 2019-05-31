@@ -132,7 +132,7 @@ class Directory extends Component {
             case 'Office':
                 // Filter by Office and set filteredAssociates. Also set current office/office contacts  
                 let associatesByOffice = this.props.allAssociates.filter(emp => emp.officeID === filterValue);
-                let selectedOffice = this.props.allOffices.filter(off=>off.officeId === filterValue)
+                let selectedOffice = this.props.allOffices.filter(off => off.officeId === filterValue)
                 this.setState({
                     filteredAssociates: associatesByOffice,
                     currentOffice: selectedOffice[0]
@@ -193,7 +193,6 @@ class Directory extends Component {
                 currentAssociateIndex: newIndex
             });
         }
-        
     }
 
     resetAssociate(){

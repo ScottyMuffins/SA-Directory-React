@@ -1,6 +1,6 @@
 {
   "name": "summer-associate-directory",
-  "homepage": "#{homepage}#",
+  "homepage": "http://localhost:3001/SummerAssociateDirectory/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

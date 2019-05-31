@@ -21,7 +21,8 @@ class App extends Component {
     allAssociates: undefined,
     allOffices: undefined,
     allSchools: undefined,
-    allContacts: undefined
+    allContacts: undefined,
+    error: undefined
   };
 
   // Updated for concurrency. Awaits all promises at once. 
@@ -50,6 +51,10 @@ class App extends Component {
               allContacts: values[3]
           });
       });
+
+/*       .catch(error => { 
+        console.log(error.message)
+      }); */
         
     }catch(err){
       this.setState({
@@ -85,10 +90,10 @@ class App extends Component {
           <main className="container">
             <div>
               <Route exact={true} path='/SummerAssociateDirectory' component={Welcome}/>
-              <Route exact={true} path='/SummerAssociateDirectory/Directory/View-All' component={() => <Directory {...props} sortOrder={'ViewAll'} ></Directory>}/>
-              <Route exact={true} path="/SummerAssociateDirectory/Directory/By-Office" render={() => <Directory {...props} sortOrder={'ByOffice'} ></Directory>}/>
+              <Route exact={true} path='/SummerAssociateDirectory/Directory/View-All' component={() => <Directory {...props} sortOrder={'ViewAll'} />}/>
+              <Route exact={true} path="/SummerAssociateDirectory/Directory/By-Office" render={() => <Directory {...props} sortOrder={'ByOffice'} />}/>
               <Route exact={true} path="/SummerAssociateDirectory/Directory/By-School" render={() => <Directory {...props} sortOrder={'BySchool'}/>}/> 
-              <Route exact={true} path="/SummerAssociateDirectory/Directory/By-Name" render={() => <Directory  {...props} sortOrder={'ByName'} ></Directory>}/>
+              <Route exact={true} path="/SummerAssociateDirectory/Directory/By-Name" render={() => <Directory  {...props} sortOrder={'ByName'} />}/>
             </div>
           </main>
           <footer className="App-footer no-select">
